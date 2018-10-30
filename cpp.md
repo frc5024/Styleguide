@@ -17,7 +17,7 @@ Header guards must follow the following naming standard (some of our older code 
 For example, a file called `ShootBall.hpp` would have this header guard:
 ```cpp
 #ifndef _SHOOTBALL_HG_
-#define _SHOOTBaLL_HG_
+#define _SHOOTBALL_HG_
 
 ...
 
@@ -62,11 +62,11 @@ XboxController
 ## Naming Functions
 The name of a function must describe what it does, or returns. Every word in the function name must also be uppercase. For example:
 ```
-ClimbScale() // Good
+ClimbScale(); // Good
 
-DoTheThing() // Bad. Not descriptive
+DoTheThing(); // Bad. Not descriptive
 
-getStuff() // Bad. Not uppercase
+getStuff(); // Bad. Not uppercase
 ```
 
 ## Returning Data
@@ -102,3 +102,5 @@ RobotFUnction(){ WinGame(); }
 // Make sure there are spaces to pad the inner code
 ```
 
+## Defining Classes
+All classes' methods must be declared in the `.hpp` file, the defined in the `.cpp` file
