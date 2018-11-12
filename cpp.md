@@ -4,7 +4,7 @@ C++ is our main language when writing code to be run directly on the robot.
 This guide should make sure that all code is familiar no matter what section of the codebase you are looking at.
 
 ## C++ Version
-The version of C++ that we use is currently C++ 11. Try not to include features from newer versions untill we habv officially decided that we are moving up a version. On the other hand, Make sure that the code and features you are using still work in future versions of C++.  We may upgrade in the future, and we don't want the code to break. 
+The version of C++ that we use is currently C++ 11. Try not to include features from newer versions untill we habE officially decided that we are moving up a version. On the other hand, Make sure that the code and features you are using still work in future versions of C++.  We may upgrade in the future, and we don't want the code to break. 
 
 ## Header Files
 Every `.cpp` file must have a `.hpp` file to go along with it. All our file names must use the new naming for their extensions (`.cpp` and `.hpp`).
