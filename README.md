@@ -83,3 +83,43 @@ Each subsystem needs at least the following:
    - Must contain a field for the system's current goal
    - Should contain the status of every sensor, and output
 
+## Java
+
+### Codestyle
+
+ - All variables must be written in *camelCase* 
+ - Variables should not be prefixed with `m_` (this is a change from 2019-2020)
+ - All methods must be written in *camelCase*
+ - All class names and enums must be written in *PascalCase*
+ - All constants must be written in *UPPER_CASE_SNAKE_CASE*
+
+### Subsystems
+
+Each subsystem needs at least 2 files.
+ - One for the actual system code
+ - One for configuration
+
+The system class should:
+ - Extend `io.github.frc5024.generic_robot.subsystems.BaseSubsystem`
+ - Contain a status object from the protobuf file of type `<SystemName>Status.Builder`
+   - This can be created by calling `<SystemName>Status.newBuilder();` in the constructor
+ - Have a public constructor
+ - **Not** create motor and sensor objects in the constructor
+   - All motors and sensors should be passed in to the constructor
+   - This makes it much easier to unit test the code
+ - Have a `getSystemStatus()` method, This method should:
+   - Set the current FPGA timestamp in the status proto object 
+   - Build and return a copy of the status with `status.build()`
+ - Have a `isGoalAchievable` method
+   - Takes in a goal object of `<SystemName>Goal`
+   - Returns true if the system can get to that goal directly from it's current state. If something else needs to happen first, return false
+ - Have a `StateMachine<>` object **named `stateMachine`**
+ - Call the following two lines in the `periodic()` method
+   - `status.setState(stateMachine.getCurrentState())`
+   - `stateMachine.update()`
+
+The system config class should:
+ - Contain a field for everything that can be configured about the system
+ - Contain a method called `getDefault<SystemName>()` that returns an instance of the system. 
+   - This is really just the same as a `getInstance()` method, but put in a seperate file
+   - This allows unit tests to make their own instance, while the robot code will call the `getDefault` method to access the class
